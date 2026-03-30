@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TaskTracker from './TaskTracker';
 
 export default function TaskList () {
     const [inputText, setInputText] = useState("");
@@ -26,9 +27,13 @@ export default function TaskList () {
         setItems(updatedItems);
     }
 
+    const completedCount = items.filter(item => item.isComplete).length;
+
 
 
     return (
+        <>
+        <TaskTracker count={items.length} completedCount={completedCount}/>
         <div className="p-6 max-w-md mx-auto bg-white rounded-xl shadow-md mt-10 border border-gray-200">
             <h2 className="text-xl font-bold mb-4 text-gray-800">My Task List</h2>
             <div className="flex gap-2 mb-6">
@@ -78,6 +83,7 @@ export default function TaskList () {
                 ))}
             </ul>
         </div>
+        </>
         
     )
 }
